@@ -145,3 +145,6 @@ body {
     }
 }
 
+.occupied {
+    background-color: red; /* Style pour les créneaux occupés */
+}

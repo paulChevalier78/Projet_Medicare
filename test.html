@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TP4 - Carrousel</title>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+var $img = $('#carrousel img');
+var max = $img.length;
+var i = 0; // compteur
+$img.css('margin-left','0').css('display', 'none'); //on cache les images
+$img.eq(i).css('display', 'inline'); //on affiche l'image courante
+$img.eq(i+1).css('margin-left','200px').css('display', 'inline');
+$img.eq(i+2).css('margin-left','400px').css('display', 'inline');
+$img.eq(i+3).css('margin-left','600px').css('display', 'inline');
+//si on clique sur « next » ou « > »
+$('.next').click(function () { // image suivante
+i+=4; // on incrémente le compteur
+if (i < max-4) {
+i = i+4;
+$img.css('margin-left','0').css('display', 'none'); //on cache
+$img.eq(i).css('display', 'inline'); //on affiche l'image courante
+$img.eq(i+1).css('margin-left','200px').css('display', 'inline');
+$img.eq(i+2).css('margin-left','400px').css('display', 'inline');
+$img.eq(i+3).css('margin-left','600px').css('display', 'inline');
+Page 2 sur 4
+} else {
+i = 0;
+}
+});
+//si on clique sur « prev » ou « < »
+$('.prev').click(function () { // groupe des images précédentes
+i-=4; // on décrémente le compteur
+if (i >= 0) {
+$img.css('margin-left','0').css('display', 'none'); //on cache
+$img.eq(i).css('display', 'inline'); //on affiche l'image courante
+$img.eq(i+1).css('margin-left','200px').css('display', 'inline');
+$img.eq(i+2).css('margin-left','400px').css('display', 'inline');
+$img.eq(i+3).css('margin-left','600px').css('display', 'inline');
+} else {
+i = 0;
+}
+});
+function slideImg() {
+setTimeout(function() {
+$img.eq(i).css('display', 'inline').css('transition-delay','0.25s');
+$img.eq(i + 1).css('margin-left','200px').css('display',
+'inline').css('transition-delay','0.5s');
+$img.eq(i + 2).css('margin-left','400px').css('display',
+'inline').css('transition-delay','0.75s');
+$img.eq(i + 3).css('margin-left','600px').css('display',
+'inline').css('transition-delay','1s');
+if (i < max-4) {
+i = i+4;
+} else {
+i = 0;
+}
+$img.css('margin-left','0').css('display', 'none');
+$img.eq(i).css('display', 'inline').css('transition-delay','1.25s');
+$img.eq(i + 1).css('margin-left','200px').css('display',
+'inline').css('transition-delay','1.5s');
+$img.eq(i + 2).css('margin-left','400px').css('display',
+'inline').css('transition-delay','1.75s');
+$img.eq(i + 3).css('margin-left','600px').css('display',
+'inline').css('transition-delay','2s');
+slideImg();
+}, 4000);
+}
+slideImg();
+});
+</script>
+<style type="text/css">
+body {
+background-color: #999999;
+}
+#wrapper {
+width: 800px;
+height: 380px;
+position: relative;
+margin: auto;
+border: 2px solid black;
+background-color: #bbccdd;
+border-radius: 6px;
+}
+#titre {
+position: absolute;;
+width: 750px;
+margin-left: 25px;
+margin-top: 10px;
+text-align: center;
+color: red;
+background-color: #9999CC;
+border-radius: 10px;
+}
+#carrousel {
+margin: 120px auto 10px auto;
+width: 750px;
+height: 150px;
+list-style: none;
+left: 0;
+margin-bottom: 0;
+position: absolute;
+}
+#carrousel ul {
+position: relative;
+}
+ul > li {
+list-style-type: none;
+position: absolute;
+top: 30%;
+transition: 1s opacity;
+}
+#audio {
+position: absolute;
+display: block;
+width: 200px;
+margin: 10% 0 0 35%;
+align-self: center;
+top: 50%;
+align-self: center;
+}
+p {
+font-family: sans-serif;
+font-size: 13px;
+color: #646566;
+line-height: 1.5em;
+}
+img {
+height: 100px;
+border-radius: 8px;
+}
+.prev {
+position: absolute;
+display: block;
+margin-left: 10%;
+margin-top: 40%;
+color: red;
+width: 70px;
+height: 35px;
+font-weight: 800;
+background-color: #99CCEE;
+border-radius: 5px;
+border: 2px solid black;
+}
+.next {
+position: absolute;
+display: block;
+margin-left: 80%;
+margin-top: 40%;
+color: red;
+width: 70px;
+height: 35px;
+font-weight: 800;
+background-color: #99CCEE;
+border-radius: 5px;
+border: 2px solid black;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="titre">
+<h1>Les grands livres</h1>
+</div>
+<div id="carrousel">
+<ul>
+<li><img src="book1.jpg" width="120" height="100"></li>
+<li><img src="book2.jpg" width="120" height="100"></li>
+<li><img src="book3.jpg" width="120" height="100"></li>
+<li><img src="book4.jpg" width="120" height="100"></li>
+<li><img src="book5.jpg" width="120" height="100"></li>
+<li><img src="book6.jpg" width="120" height="100"></li>
+<li><img src="book7.jpg" width="120" height="100"></li>
+<li><img src="book8.jpg" width="120" height="100"></li>
+<li><img src="book9.jpg" width="120" height="100"></li>
+<li><img src="book10.jpg" width="120" height="100"></li>
+<li><img src="book11.jpg" width="120" height="100"></li>
+<li><img src="book12.jpg" width="120" height="100"></li>
+</ul>
+<div id="audio">
+<audio controls autoplay loop>
+<source src="serenity.mp3" type="audio/ogg">
+<source src="river.mp3" type="audio/mpeg">
+</audio>
+</div>
+</div>
+<div id="buttons">
+<input type="button" value="<" class="prev">
+<input type="button" value=">" class="next">
+</div>
+</div>
+</body>
+</html>

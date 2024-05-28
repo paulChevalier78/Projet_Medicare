@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatroom</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="chatroom.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <header>
+            <h1>Bienvenue, <strong><?php echo htmlspecialchars($user); ?></strong></h1>
+            <a href="medecing1.html">Quitter la conversation</a>
+        </header>
+        <div id="chatbox">
+            <?php foreach ($messages as $message): ?>
+                <p><strong><?php echo htmlspecialchars($message['username']); ?>:</strong> <?php echo htmlspecialchars($message['message']); ?> <em>(<?php echo $message['timestamp']; ?>)</em></p>
+            <?php endforeach; ?>
+        </div>
+        <form action="chat.php" method="POST" class="mt-3">
+            <div class="form-group">
+                <input type="text" name="username" class="form-control" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+                <textarea name="message" class="form-control" rows="3" placeholder="Your message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            setInterval(function(){
+                $('#chatbox').load('chat.php #chatbox > *');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
