@@ -1,16 +1,15 @@
 <?php
-$servername = "localhost"; // Adresse du serveur MySQL
-$username = "root"; // Nom d'utilisateur MySQL
-$password = "root"; // Mot de passe MySQL
-$dbname = "medicare"; // Nom de la base de données
+$servername = "localhost";
+$username = "root";  // Par défaut, l'utilisateur MySQL de WAMP est "root"
+$password = "";      // Par défaut, il n'y a pas de mot de passe pour "root"
+$dbname = "rdv";
 
-// Créer une connexion
-$connexion = new mysqli($servername, $username, $password, $dbname);
+// Créer la connexion
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Vérifier la connexion
-if ($connexion->connect_error) {
-    die("Échec de la connexion : " . $connexion->connect_error);
+if ($conn->connect_error) {
+    die("La connexion a échoué: " . $conn->connect_error);
 }
-
-$connexion->set_charset("utf8"); // Assurez-vous que la connexion utilise l'encodage UTF-8
+echo "Connexion réussie!";
 ?>
