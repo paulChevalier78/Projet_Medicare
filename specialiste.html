@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Médecins par Spécialité</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Liste des Médecins par Spécialité</h1>
+    </header>
+    <main>
+        <form method="GET" action="index.php">
+            <label for="specialite">Choisissez une spécialité :</label>
+            <select name="specialite" id="specialite">
+                <option value="Addictologue">Addictologue</option>
+                <option value="Andrologie">Andrologie</option>
+                <option value="Cardiologie">Cardiologie</option>
+                <option value="Dermatologie">Dermatologie</option>
+                <option value="Gastro-Hépato-Entérologie">Gastro-Hépato-Entérologie</option>
+                <option value="Gynécologie">Gynécologie</option>
+                <option value="I.S.T.">I.S.T.</option>
+                <option value="Ostéopathie">Ostéopathie</option>
+            </select>
+            <button type="submit">Afficher</button>
+        </form>
+        <?php include 'display_medecins.php'; ?>
+    </main>
+    <footer class="page-footer">
+        <p>&copy; 2024 Votre Site de Réservation de Médecins</p>
+    </footer>
+</body>
+</html>
+<?php
+include 'db_connect.php'; // Inclure le fichier de connexion
+
+// Vérifier si une spécialité a été sélectionnée
+if (isset($_GET['specialite'])) {
+    $specialite = $_GET['specialite'];
+    
+    // Préparer et exécuter la requête SQL
+    $stmt = $conn->prepare("SELECT nom, prenom, contact, email, cv, photo FROM medecins WHERE specialite = ?");
+    $stmt->bind_param("s", $specialite);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        echo "<div class='wrapper'>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<div class='medecin'>";
+            echo "<img src='" . $row['photo'] . "' alt='Photo de " . $row['prenom'] . " " . $row['nom'] . "' class='medecin-photo'>";
+            echo "<h2>" . $row['prenom'] . " " . $row['nom'] . "</h2>";
+            echo "<p>Contact: " . $row['contact'] . "</p>";
+            echo "<p>Email: <a href='mailto:" . $row['email'] . "'>" . $row['email'] . "</a></p>";
+            echo "<p><a href='" . $row['cv'] . "' target='_blank'>Voir CV</a></p>";
+            echo "</div>";
+        }
+        echo "</div>";
+    } else {
+        echo "<p>Aucun médecin trouvé pour la spécialité sélectionnée.</p>";
+    }
+    $stmt->close();
+} else {
+    echo "<p>Veuillez sélectionner une spécialité.</p>";
+}
+
+$conn->close();
+?>
