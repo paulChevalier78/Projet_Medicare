@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="labo.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="labo.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -18,20 +18,22 @@
     </header>
     
         <nav class="navbar navbar-expand-md">
-            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="acceuil.html">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="toutParcourir.html">Tout parcourir</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Recherche</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Votre compte</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#laboratoire">Laboratoire</a></li> <!-- Nouvelle entrée de navigation -->
-                </ul>
-            </div>
-        </nav>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="acceuil.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="tout_parcourir.php">Tout parcourir</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
+                <li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
+                <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
+                <button class="btn btn-dark btn-sm" type="submit"  onclick="search()" >Rechercher</button>
+            </ul>
+        </div>
+    </nav>     
+    
+    <div id="searchResults"></div>
 
 
                 <!-- Nouvelle section Laboratoire de biologie médicale -->
@@ -59,7 +61,7 @@
                                         <p>Dépistage covid-19</p>
                                     </div>
                                     <div id="covid_button">
-                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                        <a href="connexion_client.php"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
                                     </div>
                                     <p id="covid_hide">Avant le Prélèvement
 
@@ -91,7 +93,7 @@
                                         <p>Biologie Préventive</p>
                                     </div>
                                     <div id="preventive_button">
-                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                        <a href="connexion_client.php"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
                                     </div>
                                     <p id="preventive_hide">Avant le Prélèvement
 
@@ -123,7 +125,7 @@
                                         <p>Biologie de la femme enceinte</p>
                                     </div>
                                     <div id="enceinte_button">
-                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                        <a href="connexion_client.php"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
                                     </div>
                                     <p id="enceinte_hide">Avant le Prélèvement
 
@@ -155,7 +157,7 @@
                                         <p>Biologie de routine</p>
                                     </div>
                                     <div id="routine_button">
-                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                        <a href="connexion_client.php"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
                                     </div>
                                     <p id="routine_hide">Avant le Prélèvement
 
@@ -187,7 +189,7 @@
                                         <p>Cancerologie</p>
                                     </div>
                                     <div id="cancer_button">
-                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                        <a href="connexion_client.php"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
                                     </div>
                                     <p id="cancer_hide">Avant le Prélèvement
 
@@ -219,7 +221,7 @@
                                         <p>Gynécologie</p>
                                     </div>
                                     <div id="gyneco_button">
-                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                        <a href="connexion_client.php"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
                                     </div>
                                     <p id="gyneco_hide">Avant le Prélèvement
 

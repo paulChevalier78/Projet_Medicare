@@ -16,21 +16,23 @@
         <a href="#"><img src="loog.png" alt="Logo" class="header-logo"></a>
     </header>
     
-        <nav class="navbar navbar-expand-md">
-            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="acceuil.html">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="toutParcourir.html">Tout parcourir</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Recherche</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Votre compte</a></li>
-                </ul>
-            </div>
-        </nav>
-
+    <nav class="navbar navbar-expand-md">
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="acceuil.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="toutParcourir.html">Tout parcourir</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
+                <li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
+                <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
+                <button class="btn btn-dark btn-sm" type="submit"  onclick="search()" >Rechercher</button>
+            </ul>
+        </div>
+    </nav>     
+    
+    <div id="searchResults"></div>
         <div class="container">
             <h2>Liste des Médecins</h2>
             <table class="table table-striped">
@@ -60,26 +62,6 @@
                     <tr>
                         <td><a href="medecing5.html">Thomas</a></td>
                         <td><a href="medecing5.html">Paul</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="medecing6.html">Petit</a></td>
-                        <td><a href="medecing6.html">Claire</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="medecing7.html">Robert</a></td>
-                        <td><a href="medecing7.html">Hélène</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="medecing8.html">Richard</a></td>
-                        <td><a href="medecing8.html">Alain</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="medecing9.html">Durand</a></td>
-                        <td><a href="medecing9.html">Sophie</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="medecing10.html">Leroy</a></td>
-                        <td><a href="medecing10.html">Julien</a></td>
                     </tr>
                 </tbody>
             </table>

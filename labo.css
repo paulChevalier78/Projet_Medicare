@@ -1,0 +1,302 @@
+/*labBioMed*/
+.ongletSelection {
+    background-color: blue;
+    color: white;
+    width: 100%;
+    height: 100%;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 10px; /* Ajoute des coins arrondis */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card_Lab{
+    height: 40%;
+    background-color: #4CAF50;
+    border-radius: 20px; /* Bords arrondis */
+    border: 2px solid #333; /* Bordure pour mieux voir les coins */
+    margin: 50px auto; /* Centrer le rectangle */
+}
+
+.container1 {
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2%;
+    gap: 1%;
+    flex-wrap: wrap;
+}
+.item {
+    flex: 1 1 calc(33.333% - 1%); /* Chaque div prendra une part égale de l'espace disponible */
+    padding: 6%;
+    height: 40%;
+    background-color: #5b4caf;
+    border-radius: 20px; /* Bords arrondis */
+    border: 2px solid #333; /* Bordure pour mieux voir les coins */
+    margin: 1% auto; /* Centrer le rectangle */
+    box-sizing: border-box;
+    background-size: cover; /* Ajuste l'image pour couvrir tout l'arrière-plan */
+    background-position: center; /* Centre l'image */
+    color: white; /* Change la couleur du texte pour le rendre visible sur l'image de fond */
+    text-shadow: 1px 1px 2px black; /* Ajoute une ombre au texte pour améliorer la lisibilité */
+
+}
+
+.item-1 {
+    background-image: url('laboratoire.png');
+}
+.item-2 {
+    background-image: url('image2.jpg');    /* mettre image */
+}
+.item-3 {
+    background-image: url('image3.jpg');    /* mettre image */
+}
+.item-4 {
+    background-image: url('image4.jpg');    /* mettre image */
+}
+.item-5 {
+    background-image: url('image5.jpg');    /* mettre image */
+}
+.item-6 {
+    background-image: url('image6.jpg');    /* mettre image */
+}
+
+#covid_front{
+    color: pink;
+    background-color: white;
+    font-size: 200%;
+    text-align: center;
+}
+
+#preventive_front{
+    color: pink;
+    background-color: white;
+    font-size: 200%;
+    text-align: center;
+}
+
+#enceinte_front{
+    color: pink;
+    background-color: white;
+    font-size: 200%;
+    text-align: center;
+}
+
+#routine_front{
+    color: pink;
+    background-color: white;
+    font-size: 200%;
+    text-align: center;
+}
+
+#cancer_front{
+    color: pink;
+    background-color: white;
+    font-size: 200%;
+    text-align: center;
+}
+
+#gyneco_front{
+    color: pink;
+    background-color: white;
+    font-size: 200%;
+    text-align: center;
+}
+
+/*labBioMed*/
+
+/*labBioMed*/
+
+/*labBioMed*/
+
+.ongletSelection p {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+#rules h2,
+#rules h3 {
+    color: #333;
+}
+
+#rules h4 {
+    color: #555;
+}
+
+#salles ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#salles ul li {
+    padding: 5px 0;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.page-footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+}
+
+.page-footer h6 {
+    font-weight: bold;
+}
+
+.page-footer p {
+    margin: 0;
+}
+
+
+
+
+body {
+    padding: 0px;
+    margin: 0px;
+    background: #f2f6e9;
+}
+
+/* Wrapper */
+.wrapper {
+    padding: 1%;
+}
+
+/* Site Header */
+.site-header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+.site-header a {
+    display: inline-block;
+}
+.header-logo {
+    max-height: 60px; /* Adjust as needed */
+}
+
+/*--- navigation bar ---*/
+.navbar {
+    background: #50ce11;
+}
+.nav-link, .navbar-brand {
+    color: #fff;
+    cursor: pointer;
+}
+.nav-link {
+    margin-right: 1em !important;
+}
+.nav-link:hover {
+    color: #000;
+}
+.navbar-collapse {
+    justify-content: center;
+}
+
+/* Welcome Section */
+.welcome-section {
+    padding: 2em 0;
+}
+.welcome-section h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 1em;
+}
+.welcome-section p {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Event Section */
+.event-section {
+    padding: 2em 0;
+    background-color: #f9f9f9;
+}
+.event-section h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 1em;
+}
+.event-section p {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Carousel */
+.carousel-inner img {
+    width: 100%;
+    height: 400px;
+}
+
+/* Features Section */
+.features {
+    margin: 4em auto;
+    padding: 1em;
+    position: relative;
+}
+.feature-title {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.features img {
+    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 16px;
+}
+.features .form-control,
+.features input {
+    border-radius: 0;
+}
+.features .btn {
+    background-color: #589b37;
+    border: 1px solid #589b37;
+    color: #fff;
+    margin-top: 20px;
+}
+.features .btn:hover {
+    background-color: #333;
+    border: 1px solid #333;
+}
+
+/* Footer */
+.page-footer {
+    background-color: #222;
+    color: #ccc;
+    padding: 60px 0 30px;
+}
+.page-footer h6 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1em;
+}
+.page-footer p {
+    color: #ccc;
+    line-height: 1.5;
+}
+
+.footer-copyright {
+    color: #666;
+    padding: 40px 0;
+}
+
+@media (max-width: 575.98px) {
+    .description {
+        left: 0;
+        padding: 0 15px;
+        position: absolute;
+        top: 10%;
+    }
+    .carousel-inner img {
+        height: 200px;
+    }
+}
+

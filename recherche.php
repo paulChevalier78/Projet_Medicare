@@ -31,12 +31,9 @@ if(isset($_POST['query'])) {
     // Afficher les résultats de la recherche
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            echo "<p>Nom: " . $row["nom"] . ", Prénom: " . $row["prenom"] . ", Spécialité: " . $row["specialite"] . "</p>";
-
-            // Si le médecin est "Julia Molinari", afficher un lien vers "medecing1.html"
-            if ($row["nom"] === "Molinari" && $row["prenom"] === "Julia") {
-                echo '<a href="medecing1.html">Voir le profil</a>';
-            }
+            // Créer un lien vers une page de profil, par exemple en utilisant l'ID du médecin
+            $profileLink = "medecing1.html?id=" . $row["id"];
+            echo "<p>Nom: <a href='$profileLink'>" . $row["nom"] . " " . $row["prenom"] . "</a>, Spécialité: " . $row["specialite"] . "</p>";
         }
     } else {
         echo "Aucun résultat trouvé.";

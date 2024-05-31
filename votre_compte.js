@@ -17,7 +17,7 @@ $(document).ready(function(){
             success: function(response){
                 // Redirection vers la page compte_admin.html si l'authentification est réussie pour l'administrateur
                 if(response.trim() === 'success: administrateur'){
-                    window.location.href = 'compte_admin.html';
+                    window.location.href = 'compte_admin.php';
                 } else if(response.trim() === 'success: medecin'){
                     // Redirection vers la page compte_medecin.html si l'authentification est réussie pour un médecin
                     window.location.href = 'compte_medecin.html';
@@ -47,7 +47,7 @@ $(document).ready(function(){
             success: function(response){
                 // Redirection vers la page compte_admin.html si l'authentification est réussie pour l'administrateur
                 if(response.trim() === 'success: administrateur'){
-                    window.location.href = 'compte_admin.html';
+                    window.location.href = 'compte_admin.php';
                 } else if(response.trim() === 'success: medecin'){
                     // Redirection vers la page compte_medecin.html si l'authentification est réussie pour un médecin
                     window.location.href = 'compte_medecin.html';

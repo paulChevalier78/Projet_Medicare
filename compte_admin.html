@@ -23,13 +23,20 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="acceuil.html">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="toutParcourir.html">Tout parcourir</a></li>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="accueil_admin.php">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tout_parcourir_admin.php">Tout parcourir</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
-                    <li class="nav-item"><a class="nav-link" href="votre_compte.html">Votre compte</a></li>
-                    <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
-                    <button class="btn btn-dark btn-sm" type="submit" onclick="search()">Rechercher</button>
+                    <li class="nav-item"><a class="nav-link" href="votre_compte_admin.php">Votre compte</a></li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search" id="searchInput">
+                    <button class="btn btn-dark my-2 my-sm-0" type="submit" onclick="search()">Rechercher</button>
+                </form>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger text-white" href="deconnexion_admin.php">Se déconnecter</a>
+                    </li>
                 </ul>
             </div>
         </nav>     
@@ -40,7 +47,7 @@
         <div class="container_compte">
             <div class="container">
                 <div class="text-center">
-                    <h3>Compte administrateur</h3>
+                    <h3>Binevenue sur le compte administrateur</h3>
                 </div>
             </div>            
             <div class="text-center mb-3">

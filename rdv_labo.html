@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="labo.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="script.js"></script>
+    <script src="labo.js"></script>
 </head>
 <body>
     <div class="wrapper">
-    <header class="site-header">
-        <a href="#"><img src="loog.png" alt="Logo" class="header-logo"></a>
-    </header>
+        <header class="site-header">
+            <a href="#"><img src="loog.png" alt="Logo" class="header-logo"></a>
+        </header>
     
         <nav class="navbar navbar-expand-md">
             <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
@@ -34,142 +34,159 @@
         </nav>
 
         <div id="disponibilites">
-        <div class="container mt-5">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th class="table-success" colspan="2" rowspan="1">Lundi</th>
-                        <th class="table-success" colspan="2" rowspan="1">Mardi</th>
-                        <th class="table-success" colspan="2" rowspan="1">Mercredi</th>
-                        <th class="table-success" colspan="2" rowspan="1">Jeudi</th>
-                        <th class="table-success" colspan="1" rowspan="1">Vendredi</th>
-                    </tr>
-                    <tr>
-                        <td class="table-danger"><b>AM</b></td>
-                        <td class="table-warning">PM</td>
-                        <td class="table-danger"><b>AM</b></td>
-                        <td class="table-warning"><b>PM</b></td>
-                        <td class="table-danger"><b>AM</b></td>
-                        <td class="table-warning"><b>PM</b></td>
-                        <td class="table-danger"><b>AM</b></td>
-                        <td class="table-warning"><b>PM</b></td>
-                        <td class="table-danger"><b>AM</b></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="08:00:00" data-heure-fin="08:30:00">08:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-03" data-heure-debut="14:00:00" data-heure-fin="14:30:00">14:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="08:00:00" data-heure-fin="08:30:00">08:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="14:00:00" data-heure-fin="14:30:00">14:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="08:00:00" data-heure-fin="08:30:00">08:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="14:00:00" data-heure-fin="14:30:00">14:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="08:00:00" data-heure-fin="08:30:00">08:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="14:00:00" data-heure-fin="14:30:00">14:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-07" data-heure-debut="08:00:00" data-heure-fin="08:30:00">08:00</td>
-                    </tr>
-                    <tr>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="08:30:00" data-heure-fin="09:00:00">08:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-03" data-heure-debut="14:30:00" data-heure-fin="15:00:00">14:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="08:30:00" data-heure-fin="09:00:00">08:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="14:30:00" data-heure-fin="15:00:00">14:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="08:30:00" data-heure-fin="09:00:00">08:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="14:30:00" data-heure-fin="15:00:00">14:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="08:30:00" data-heure-fin="09:00:00">08:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="14:30:00" data-heure-fin="15:00:00">14:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-07" data-heure-debut="08:30:00" data-heure-fin="09:00:00">08:30</td>
-                    </tr>
-                    <tr>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="09:00:00" data-heure-fin="09:30:00">09:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-03" data-heure-debut="15:00:00" data-heure-fin="15:30:00">15:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="09:00:00" data-heure-fin="09:30:00">09:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="15:00:00" data-heure-fin="15:30:00">15:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="09:00:00" data-heure-fin="09:30:00">09:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="15:00:00" data-heure-fin="15:30:00">15:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="09:00:00" data-heure-fin="09:30:00">09:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="15:00:00" data-heure-fin="15:30:00">15:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-07" data-heure-debut="09:00:00" data-heure-fin="09:30:00">09:00</td>
-                    </tr>
-                    <tr>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="09:30:00" data-heure-fin="10:00:00">09:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-03" data-heure-debut="15:30:00" data-heure-fin="16:00:00">15:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="09:30:00" data-heure-fin="10:00:00">09:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="15:30:00" data-heure-fin="16:00:00">15:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="09:30:00" data-heure-fin="10:00:00">09:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="15:30:00" data-heure-fin="16:00:00">15:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="09:30:00" data-heure-fin="10:00:00">09:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="15:30:00" data-heure-fin="16:00:00">15:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-07" data-heure-debut="09:30:00" data-heure-fin="10:00:00">09:30</td>
-                    </tr>
-                    <tr>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="10:00:00" data-heure-fin="10:30:00">10:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-03" data-heure-debut="16:00:00" data-heure-fin="16:30:00">16:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="10:00:00" data-heure-fin="10:30:00">10:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="16:00:00" data-heure-fin="16:30:00">16:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="10:00:00" data-heure-fin="10:30:00">10:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="16:00:00" data-heure-fin="16:30:00">16:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="10:00:00" data-heure-fin="10:30:00">10:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="16:00:00" data-heure-fin="16:30:00">16:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-07" data-heure-debut="10:00:00" data-heure-fin="10:30:00">10:00</td>
-                    </tr>
-                    <tr>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="10:30:00" data-heure-fin="11:00:00">10:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-03" data-heure-debut="16:30:00" data-heure-fin="17:00:00">16:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="10:30:00" data-heure-fin="11:00:00">10:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="16:30:00" data-heure-fin="17:00:00">16:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="10:30:00" data-heure-fin="11:00:00">10:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="16:30:00" data-heure-fin="17:00:00">16:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="10:30:00" data-heure-fin="11:00:00">10:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="16:30:00" data-heure-fin="17:00:00">16:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-07" data-heure-debut="10:30:00" data-heure-fin="11:00:00">10:30</td>
-                    </tr>
-                    <tr>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="11:00:00" data-heure-fin="11:30:00">11:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-03" data-heure-debut="17:00:00" data-heure-fin="17:30:00">17:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="11:00:00" data-heure-fin="11:30:00">11:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="17:00:00" data-heure-fin="17:30:00">17:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="11:00:00" data-heure-fin="11:30:00">11:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="17:00:00" data-heure-fin="17:30:00">17:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="11:00:00" data-heure-fin="11:30:00">11:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="17:00:00" data-heure-fin="17:30:00">17:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-07" data-heure-debut="11:00:00" data-heure-fin="11:30:00">11:00</td>
-                    </tr>
-                    <tr>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="11:30:00" data-heure-fin="12:00:00">11:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-03" data-heure-debut="17:30:00" data-heure-fin="18:00:00">17:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="11:30:00" data-heure-fin="12:00:00">11:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="17:30:00" data-heure-fin="18:00:00">17:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="11:30:00" data-heure-fin="12:00:00">11:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="17:30:00" data-heure-fin="18:00:00">17:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="11:30:00" data-heure-fin="12:00:00">11:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="17:30:00" data-heure-fin="18:00:00">17:30</td>
-                        <td data-medecin-id="1" data-jour="2024-06-07" data-heure-debut="11:30:00" data-heure-fin="12:00:00">11:30</td>
-                    </tr>
-                    <tr>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="12:00:00" data-heure-fin="12:30:00">12:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-03" data-heure-debut="18:00:00" data-heure-fin="18:30:00">18:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="12:00:00" data-heure-fin="12:30:00">12:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-04" data-heure-debut="18:00:00" data-heure-fin="18:30:00">18:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="12:00:00" data-heure-fin="12:30:00">12:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-05" data-heure-debut="18:00:00" data-heure-fin="18:30:00">18:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="12:00:00" data-heure-fin="12:30:00">12:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-06" data-heure-debut="18:00:00" data-heure-fin="18:30:00">18:00</td>
-                        <td data-medecin-id="1" data-jour="2024-06-07" data-heure-debut="12:00:00" data-heure-fin="12:30:00">12:00</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-4 text-center">
-                <div>
-                    <a href="com.html" class="btn btn-info mb-2 d-inline-block">Communiquer avec le laboratoire</a>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5>Sélectionnez une spécialité :</h5>
+                        <div style="margin-top: 20px;">
+                            <label><input type="radio" name="specialite" value="depistage_covid"> Dépistage Covid-19</label><br>
+                            <label><input type="radio" name="specialite" value="biologie_prev"> Biologie Préventive</label><br>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="table-success" colspan="2">Lundi</th>
+                                    <th class="table-success" colspan="2">Mardi</th>
+                                    <th class="table-success" colspan="2">Mercredi</th>
+                                    <th class="table-success" colspan="2">Jeudi</th>
+                                    <th class="table-success" colspan="1">Vendredi</th>
+                                </tr>
+                                <tr>
+                                    <th class="table-danger">AM</th>
+                                    <th class="table-warning">PM</th>
+                                    <th class="table-danger">AM</th>
+                                    <th class="table-warning">PM</th>
+                                    <th class="table-danger">AM</th>
+                                    <th class="table-warning">PM</th>
+                                    <th class="table-danger">AM</th>
+                                    <th class="table-warning">PM</th>
+                                    <th class="table-danger">AM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="lundi">08:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="lundi">14:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mardi">08:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mardi">14:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mercredi">08:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mercredi">14:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="jeudi">08:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="jeudi">14:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="vendredi">08:00</td>
+                                        
+                                </tr>
+                                <tr>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="lundi">08:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="lundi">14:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mardi">08:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mardi">14:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mercredi">08:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mercredi">14:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="jeudi">08:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="jeudi">14:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="vendredi">08:30</td>
+                                </tr>
+                                <tr>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="lundi">09:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="lundi">15:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mardi">09:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mardi">15:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mercredi">09:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mercredi">15:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="jeudi">09:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="jeudi">15:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="vendredi">09:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="lundi">09:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="lundi">15:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mardi">09:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mardi">15:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mercredi">09:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mercredi">15:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="jeudi">09:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="jeudi">15:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="vendredi">09:30</td>
+                                </tr>
+                                <tr>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="lundi">10:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="lundi">16:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mardi">10:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mardi">16:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mercredi">10:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mercredi">16:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="jeudi">10:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="jeudi">16:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="vendredi">10:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="lundi">10:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="lundi">16:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mardi">10:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mardi">16:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mercredi">10:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mercredi">16:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="jeudi">10:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="jeudi">16:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="vendredi">10:30</td>
+                                </tr>
+                                <tr>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="lundi">11:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="lundi">17:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mardi">11:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mardi">17:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mercredi">11:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mercredi">17:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="jeudi">11:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="jeudi">17:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="vendredi">11:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="lundi">11:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="lundi">17:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mardi">11:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mardi">17:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mercredi">11:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mercredi">17:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="jeudi">11:30</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="jeudi">17:30</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="vendredi">11:30</td>
+                                </tr>
+                                <tr>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="lundi">12:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="lundi">18:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mardi">12:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mardi">18:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="mercredi">12:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="mercredi">18:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="jeudi">12:00</td>
+                                    <td class="rdv" data-heure_debut="14:00" data-jour="jeudi">18:00</td>
+                                    <td class="rdv" data-heure_debut="08:00" data-jour="vendredi">12:00</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <div id="contenu" style="display:none;">
+            <p id="info">Contenu de la balise à envoyer</p>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4 text-center">
+                    <div>
+                        <a href="com.html" class="btn btn-info mb-2 d-inline-block">Communiquer avec le laboratoire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <footer class="page-footer">
             <div class="container">
@@ -198,9 +215,10 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-copyright text-center">&copy; 2019 Copyright | Droit d'auteur: webDynamique.ece.fr</div>
+            <div class="footer-copyright text-center">
+                &copy; 2019 Copyright | Droit d'auteur: webDynamique.ece.fr
+            </div>
         </footer>
-                
     </div>
 </body>
 </html>

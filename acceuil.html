@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="recherche.js" defer></script>
 </head>
 <body>
     <div class="wrapper">
@@ -16,20 +17,23 @@
         <a href="#"><img src="loog.png" alt="Logo" class="header-logo"></a>
     </header>
     
-        <nav class="navbar navbar-expand-md">
-            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="toutParcourir.html">Tout parcourir</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Recherche</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Votre compte</a></li>
-                </ul>
-            </div>
-        </nav>
+    <nav class="navbar navbar-expand-md">
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="acceuil.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="tout_parcourir.php">Tout parcourir</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
+                <li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
+                <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
+                <button class="btn btn-dark btn-sm" type="submit"  onclick="search()" >Rechercher</button>
+            </ul>
+        </div>
+    </nav>     
+    
+    <div id="searchResults"></div>
 
         <div class="container">
             <div class="welcome-section">
@@ -68,9 +72,13 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
+
+                <!-- Bouton pour l'évènement de la semaine -->
+                <div class="text-center mt-4">
+                    <a href="evenement_semaine.html" class="btn btn-primary">Évènement de la semaine</a>
+                </div>
             </div>
         </div>
-
 
         <footer class="page-footer">
             <div class="container">

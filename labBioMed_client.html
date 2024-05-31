@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicare</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="labo.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="labo.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+    <header class="site-header">
+        <a href="#"><img src="loog.png" alt="Logo" class="header-logo"></a>
+    </header>
+    
+    <nav class="navbar navbar-expand-md">
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="accueil_client.php">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="tout_parcourir_client.php">Tout parcourir</a></li>
+                <li class="nav-item"><a class="nav-link" href="rdv_client.php">Rendez-vous</a></li>
+                <li class="nav-item"><a class="nav-link" href="compte_client.php">Votre compte</a></li>
+                <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
+            <button class="btn btn-dark btn-sm" type="submit"  onclick="search()" >Rechercher</button>
+            </ul>
+        </div>
+        <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-danger text-white" href="deconnexion_admin.php">Se déconnecter</a>
+                </li>
+            </ul>
+    </nav>
+    <div id="searchResults"></div>
+
+
+                <!-- Nouvelle section Laboratoire de biologie médicale -->
+                <section id="laboratoire" class="my-5">
+                    <div class="card_Lab">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="laboratoire.png" alt="Laboratoire" class="img-fluid">
+                                </div>
+                                <div class="col-md-8">
+                                    <h3 class="card-title">Laboratoire de biologie médicale</h3>
+                                    <p><strong>Salle:</strong> SC-101</p>
+                                    <p><strong>Téléphone:</strong> +33 01 22 33 44 55</p>
+                                    <p><strong>Email:</strong> labo.biologie@omnessante.fr</p>
+                                    <button id="toggle" class="btn btn-warning">Nos Services</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="test">
+                            <div class="container1">
+
+                                <div class="item item-1">
+                                    <div id="covid_front">
+                                        <p>Dépistage covid-19</p>
+                                    </div>
+                                    <div id="covid_button">
+                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                    </div>
+                                    <p id="covid_hide">Avant le Prélèvement
+
+                                        Documents à Apporter : pièce d'identité et carte d'assurance maladie.
+                                        Préparations Personnelles : Évitez de manger, boire, fumer ou vous brosser les dents au moins 30 minutes.
+                                        Symptômes : Notez tous les symptômes que vous pourriez avoir, ainsi que tout contact récent avec des personnes positives au COVID-19.
+                                    
+                                    Pendant le Prélèvement
+                                    
+                                        Portez un masque et respectez les mesures de distanciation sociale en attendant votre tour.
+                                    
+                                    Après le Prélèvement
+                                    
+                                        Isolement : Restez en isolement jusqu'à l'obtention des résultats.
+                                        Notification : Si votre test est positif, informez immédiatement les personnes avec qui vous avez été en contact récemment et suivez les recommandations des autorités de santé.
+                                        Suivi Médical : En cas de résultat positif, consultez votre médecin pour le suivi et les conseils médicaux appropriés.
+                                    
+                                    Autres Informations Pertinentes
+                                    
+                                        Symptômes Communs : Fièvre, toux sèche, fatigue, perte du goût ou de l'odorat.
+                                        Cas Contact : Si vous avez été en contact avec une personne positive, il est crucial de se faire tester même en l'absence de symptômes.
+                                        Types de Tests : Il existe plusieurs types de tests pour le dépistage du COVID-19 : les tests PCR, les tests antigéniques, et les tests sérologiques. Les tests PCR sont les plus précis pour détecter une infection active.
+                                        Règles Sanitaires : Continuez à suivre les règles de distanciation sociale, portez un masque, et lavez-vous régulièrement les mains, même si vous avez été testé négatif, pour minimiser les risques de propagation du virus.
+                                    </p>                                    
+                                </div>
+
+                                <div class="item item-2">
+                                    <div id="preventive_front">
+                                        <p>Biologie Préventive</p>
+                                    </div>
+                                    <div id="preventive_button">
+                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                    </div>
+                                    <p id="preventive_hide">Avant le Prélèvement
+
+                                        Documents à Apporter : pièce d'identité et carte d'assurance maladie.
+                                        Préparations Personnelles : Évitez de manger, boire, fumer ou vous brosser les dents au moins 30 minutes.
+                                        Symptômes : Notez tous les symptômes que vous pourriez avoir, ainsi que tout contact récent avec des personnes positives au COVID-19.
+                                    
+                                    Pendant le Prélèvement
+                                    
+                                        Portez un masque et respectez les mesures de distanciation sociale en attendant votre tour.
+                                    
+                                    Après le Prélèvement
+                                    
+                                        Isolement : Restez en isolement jusqu'à l'obtention des résultats.
+                                        Notification : Si votre test est positif, informez immédiatement les personnes avec qui vous avez été en contact récemment et suivez les recommandations des autorités de santé.
+                                        Suivi Médical : En cas de résultat positif, consultez votre médecin pour le suivi et les conseils médicaux appropriés.
+                                    
+                                    Autres Informations Pertinentes
+                                    
+                                        Symptômes Communs : Fièvre, toux sèche, fatigue, perte du goût ou de l'odorat.
+                                        Cas Contact : Si vous avez été en contact avec une personne positive, il est crucial de se faire tester même en l'absence de symptômes.
+                                        Types de Tests : Il existe plusieurs types de tests pour le dépistage du COVID-19 : les tests PCR, les tests antigéniques, et les tests sérologiques. Les tests PCR sont les plus précis pour détecter une infection active.
+                                        Règles Sanitaires : Continuez à suivre les règles de distanciation sociale, portez un masque, et lavez-vous régulièrement les mains, même si vous avez été testé négatif, pour minimiser les risques de propagation du virus.
+                                    </p>
+                                </div>
+
+                                <div class="item item-3">
+                                    <div id="enceinte_front">
+                                        <p>Biologie de la femme enceinte</p>
+                                    </div>
+                                    <div id="enceinte_button">
+                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                    </div>
+                                    <p id="enceinte_hide">Avant le Prélèvement
+
+                                        Documents à Apporter : pièce d'identité et carte d'assurance maladie.
+                                        Préparations Personnelles : Évitez de manger, boire, fumer ou vous brosser les dents au moins 30 minutes.
+                                        Symptômes : Notez tous les symptômes que vous pourriez avoir, ainsi que tout contact récent avec des personnes positives au COVID-19.
+                                    
+                                    Pendant le Prélèvement
+                                    
+                                        Portez un masque et respectez les mesures de distanciation sociale en attendant votre tour.
+                                    
+                                    Après le Prélèvement
+                                    
+                                        Isolement : Restez en isolement jusqu'à l'obtention des résultats.
+                                        Notification : Si votre test est positif, informez immédiatement les personnes avec qui vous avez été en contact récemment et suivez les recommandations des autorités de santé.
+                                        Suivi Médical : En cas de résultat positif, consultez votre médecin pour le suivi et les conseils médicaux appropriés.
+                                    
+                                    Autres Informations Pertinentes
+                                    
+                                        Symptômes Communs : Fièvre, toux sèche, fatigue, perte du goût ou de l'odorat.
+                                        Cas Contact : Si vous avez été en contact avec une personne positive, il est crucial de se faire tester même en l'absence de symptômes.
+                                        Types de Tests : Il existe plusieurs types de tests pour le dépistage du COVID-19 : les tests PCR, les tests antigéniques, et les tests sérologiques. Les tests PCR sont les plus précis pour détecter une infection active.
+                                        Règles Sanitaires : Continuez à suivre les règles de distanciation sociale, portez un masque, et lavez-vous régulièrement les mains, même si vous avez été testé négatif, pour minimiser les risques de propagation du virus.
+                                    </p>
+                                </div>
+
+                                <div class="item item-4">
+                                    <div id="routine_front">
+                                        <p>Biologie de routine</p>
+                                    </div>
+                                    <div id="routine_button">
+                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                    </div>
+                                    <p id="routine_hide">Avant le Prélèvement
+
+                                        Documents à Apporter : pièce d'identité et carte d'assurance maladie.
+                                        Préparations Personnelles : Évitez de manger, boire, fumer ou vous brosser les dents au moins 30 minutes.
+                                        Symptômes : Notez tous les symptômes que vous pourriez avoir, ainsi que tout contact récent avec des personnes positives au COVID-19.
+                                    
+                                    Pendant le Prélèvement
+                                    
+                                        Portez un masque et respectez les mesures de distanciation sociale en attendant votre tour.
+                                    
+                                    Après le Prélèvement
+                                    
+                                        Isolement : Restez en isolement jusqu'à l'obtention des résultats.
+                                        Notification : Si votre test est positif, informez immédiatement les personnes avec qui vous avez été en contact récemment et suivez les recommandations des autorités de santé.
+                                        Suivi Médical : En cas de résultat positif, consultez votre médecin pour le suivi et les conseils médicaux appropriés.
+                                    
+                                    Autres Informations Pertinentes
+                                    
+                                        Symptômes Communs : Fièvre, toux sèche, fatigue, perte du goût ou de l'odorat.
+                                        Cas Contact : Si vous avez été en contact avec une personne positive, il est crucial de se faire tester même en l'absence de symptômes.
+                                        Types de Tests : Il existe plusieurs types de tests pour le dépistage du COVID-19 : les tests PCR, les tests antigéniques, et les tests sérologiques. Les tests PCR sont les plus précis pour détecter une infection active.
+                                        Règles Sanitaires : Continuez à suivre les règles de distanciation sociale, portez un masque, et lavez-vous régulièrement les mains, même si vous avez été testé négatif, pour minimiser les risques de propagation du virus.
+                                    </p>
+                                </div>
+
+                                <div class="item item-5">
+                                    <div id="cancer_front">
+                                        <p>Cancerologie</p>
+                                    </div>
+                                    <div id="cancer_button">
+                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                    </div>
+                                    <p id="cancer_hide">Avant le Prélèvement
+
+                                        Documents à Apporter : pièce d'identité et carte d'assurance maladie.
+                                        Préparations Personnelles : Évitez de manger, boire, fumer ou vous brosser les dents au moins 30 minutes.
+                                        Symptômes : Notez tous les symptômes que vous pourriez avoir, ainsi que tout contact récent avec des personnes positives au COVID-19.
+                                    
+                                    Pendant le Prélèvement
+                                    
+                                        Portez un masque et respectez les mesures de distanciation sociale en attendant votre tour.
+                                    
+                                    Après le Prélèvement
+                                    
+                                        Isolement : Restez en isolement jusqu'à l'obtention des résultats.
+                                        Notification : Si votre test est positif, informez immédiatement les personnes avec qui vous avez été en contact récemment et suivez les recommandations des autorités de santé.
+                                        Suivi Médical : En cas de résultat positif, consultez votre médecin pour le suivi et les conseils médicaux appropriés.
+                                    
+                                    Autres Informations Pertinentes
+                                    
+                                        Symptômes Communs : Fièvre, toux sèche, fatigue, perte du goût ou de l'odorat.
+                                        Cas Contact : Si vous avez été en contact avec une personne positive, il est crucial de se faire tester même en l'absence de symptômes.
+                                        Types de Tests : Il existe plusieurs types de tests pour le dépistage du COVID-19 : les tests PCR, les tests antigéniques, et les tests sérologiques. Les tests PCR sont les plus précis pour détecter une infection active.
+                                        Règles Sanitaires : Continuez à suivre les règles de distanciation sociale, portez un masque, et lavez-vous régulièrement les mains, même si vous avez été testé négatif, pour minimiser les risques de propagation du virus.
+                                    </p>
+                                </div>
+
+                                <div class="item item-6">
+                                    <div id="gyneco_front">
+                                        <p>Gynécologie</p>
+                                    </div>
+                                    <div id="gyneco_button">
+                                        <a href="rdv_labo.html"><button class="btn btn-warning">Prendre Rendez-vous</button></a>     <!-- Mettre image de fond -->
+                                    </div>
+                                    <p id="gyneco_hide">Avant le Prélèvement
+
+                                        Documents à Apporter : pièce d'identité et carte d'assurance maladie.
+                                        Préparations Personnelles : Évitez de manger, boire, fumer ou vous brosser les dents au moins 30 minutes.
+                                        Symptômes : Notez tous les symptômes que vous pourriez avoir, ainsi que tout contact récent avec des personnes positives au COVID-19.
+                                    
+                                    Pendant le Prélèvement
+                                    
+                                        Portez un masque et respectez les mesures de distanciation sociale en attendant votre tour.
+                                    
+                                    Après le Prélèvement
+                                    
+                                        Isolement : Restez en isolement jusqu'à l'obtention des résultats.
+                                        Notification : Si votre test est positif, informez immédiatement les personnes avec qui vous avez été en contact récemment et suivez les recommandations des autorités de santé.
+                                        Suivi Médical : En cas de résultat positif, consultez votre médecin pour le suivi et les conseils médicaux appropriés.
+                                    
+                                    Autres Informations Pertinentes
+                                    
+                                        Symptômes Communs : Fièvre, toux sèche, fatigue, perte du goût ou de l'odorat.
+                                        Cas Contact : Si vous avez été en contact avec une personne positive, il est crucial de se faire tester même en l'absence de symptômes.
+                                        Types de Tests : Il existe plusieurs types de tests pour le dépistage du COVID-19 : les tests PCR, les tests antigéniques, et les tests sérologiques. Les tests PCR sont les plus précis pour détecter une infection active.
+                                        Règles Sanitaires : Continuez à suivre les règles de distanciation sociale, portez un masque, et lavez-vous régulièrement les mains, même si vous avez été testé négatif, pour minimiser les risques de propagation du virus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+            </div>
+            
+        </div>
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <h6 class="text-uppercase font-weight-bold">Information additionnelle</h6>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                        <p>
+                            10 Rue Sextius Michel, 75015 Paris, France <br>
+                            info@webDynamique.ece.fr <br>
+                            +33 01 02 03 04 05 <br>
+                            +33 01 03 02 05 04
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="googleMap">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5250.744877226207!2d2.2859626764985514!3d48.85110800121883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6701b486bb253%3A0x61e9cc6979f93fae!2s10%20Rue%20Sextius%20Michel%2C%2075015%20Paris!5e0!3m2!1sfr!2sfr!4v1716713668012!5m2!1sfr!2sfr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright text-center">&copy; 2019 Copyright | Droit d'auteur: webDynamique.ece.fr</div>
+        </footer>
+                
+    </div>
+</body>
+</html>

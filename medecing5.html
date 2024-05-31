@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="script.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -19,33 +17,34 @@
         <a href="#"><img src="loog.png" alt="Logo" class="header-logo"></a>
     </header>
     
-        <nav class="navbar navbar-expand-md">
-            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="acceuil.html">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="toutParcourir.html">Tout parcourir</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Recherche</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Votre compte</a></li>
-                </ul>
-            </div>
-        </nav>
+    <nav class="navbar navbar-expand-md">
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="acceuil.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="tout_parcourir.php">Tout parcourir</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
+                <li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
+                <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
+                <button class="btn btn-dark btn-sm" type="submit"  onclick="search()" >Rechercher</button>
+            </ul>
+        </div>
+    </nav> 
 
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <img src="medecin1.png" alt="Dr Julia Molinari" class="img-fluid mb-3">
+                    <img src="med2.jpg" alt="Dr Martin Anne" class="img-fluid mb-3">
                     <div>
                         <a href="cvmedecin1.png" class="btn btn-primary mb-2 d-inline-block">Voir son CV</a>
-                        <a href="dispo1.html" class="btn btn-success mb-2 d-inline-block">Prendre un RDV</a>
+                        <a href="dispo5.html" class="btn btn-success mb-2 d-inline-block">Prendre un RDV</a>
                         <a href="com.html" class="btn btn-info mb-2 d-inline-block">Communiquer avec le médecin</a>
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <h1>Dr Julia Molinari</h1>
+                    <h1>Dr Thomas Paul</h1>
                     <p><strong>Bureau :</strong> 25 Rue Pierre Demours, 75017 Paris</p>
                     <p><b>Téléphone :</b> 0656897536</p>
                     <p><b>Email :</b> julia.molinari@gmail.com</p>

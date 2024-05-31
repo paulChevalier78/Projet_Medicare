@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<medecin>
+    <nom>Molinari</nom>
+    <prenom>Julia</prenom>
+    <specialite>Généraliste</specialite>
+    <contact>0123456789</contact>
+    <email>julia.molinari@gmail.com</email>
+    <cv>julia_molinari_cv.pdf</cv>
+    <photo>julia_molinari_photo.jpg</photo>
+</medecin>

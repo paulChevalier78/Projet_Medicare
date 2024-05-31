@@ -1,0 +1,12 @@
+<formations>
+    <formation>
+        <nom>Baccalauréat scientifique</nom>
+        <annee>2010</annee>
+        <etablissement>Lycée Louis-le-Grand</etablissement>
+    </formation>
+    <formation>
+        <nom>Doctorat en médecine</nom>
+        <annee>2016</annee>
+        <etablissement>Université Paris Descartes</etablissement>
+    </formation>
+</formations>

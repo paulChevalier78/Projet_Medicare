@@ -6,26 +6,25 @@ body {
 
 /* Wrapper */
 .wrapper {
-    padding: 1%;
+    padding: 0,5%;
 }
 
 /* Site Header */
 .site-header {
-    background-color: #333;
+    background-color: #f1ecec;
     color: #fff;
-    padding: 10px 0;
     text-align: center;
 }
 .site-header a {
     display: inline-block;
 }
 .header-logo {
-    max-height: 60px; /* Adjust as needed */
+    max-height: 150px; /* Adjust as needed */
 }
 
 /*--- navigation bar ---*/
 .navbar {
-    background: #50ce11;
+    background: #045d93;
 }
 .nav-link, .navbar-brand {
     color: #fff;
@@ -108,13 +107,13 @@ body {
     margin-top: 20px;
 }
 .features .btn:hover {
-    background-color: #333;
-    border: 1px solid #333;
+    background: #0b7abf;
+    background: #0b7abf;
 }
 
 /* Footer */
 .page-footer {
-    background-color: #222;
+    background: #045d93;
     color: #ccc;
     padding: 60px 0 30px;
 }
@@ -147,4 +146,8 @@ body {
 
 .occupied {
     background-color: red; /* Style pour les créneaux occupés */
+}
+
+.button-container-padding {
+    padding-top: 10%; /* Ajoutez ici le padding top souhaité */
 }

@@ -1,42 +1,87 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var planningTable = document.getElementById('planning');
-
-    // Ajoutez un gestionnaire d'événements clic pour chaque cellule
-    planningTable.addEventListener('click', function(event) {
-        var targetCell = event.target;
-
-        // Vérifie si la cellule est vide (pas occupée)
-        if (!targetCell.classList.contains('occupied')) {
-            // Vérifie si la cellule est déjà réservée (bleue)
-            if (!targetCell.classList.contains('table-primary')) {
-                // Récupère les données de la cellule (ID du médecin, jour, heure)
-                var medecinId = targetCell.getAttribute('data-medecin-id');
-                var jour = targetCell.getAttribute('data-jour');
-                var heureDebut = targetCell.getAttribute('data-heure-debut');
-                var heureFin = targetCell.getAttribute('data-heure-fin');
-
-                // Envoie une requête POST pour ajouter la réservation
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'reserver_creneau.php');
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        // Vérifie si les valeurs de temps ne sont pas nulles avant de colorer la cellule
-                        if (heureDebut !== null && heureFin !== null) {
-                            // Changer la couleur de la cellule sur laquelle vous avez cliqué
-                            targetCell.classList.add('table-primary');
-                        }
-                        alert(xhr.responseText); // Affiche la réponse du serveur (succès ou erreur)
-                    } else {
-                        alert('Erreur lors de la requête.');
-                    }
-                };
-                xhr.send('action=ajouter_reservation&medecin_id=' + medecinId + '&jour=' + jour + '&heure_debut=' + heureDebut + '&heure_fin=' + heureFin);
-            } else {
-                alert('Ce créneau est déjà occupé.');
+$(document).ready(function(){
+    $('#takeAppointmentBtn').click(function(){
+        // Faites une requête AJAX pour récupérer les créneaux disponibles
+        $.ajax({
+            url: 'appointments.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(response){
+                if(response.success){
+                    // Affichez les créneaux disponibles et permettez à l'utilisateur de sélectionner un créneau
+                    showAvailableSlots(response.availableSlots);
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function(){
+                alert('Error occurred while fetching available slots.');
             }
-        } else {
-            alert('Ce créneau est déjà occupé.');
-        }
+        });
+    });
+    
+    $(document).on('click', '.appointment-slot', function(){
+        var selectedSlot = $(this).text();
+        // Faites une requête AJAX pour réserver le créneau sélectionné
+        $.ajax({
+            url: 'appointments.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {slot: selectedSlot},
+            success: function(response){
+                if(response.success){
+                    alert('Votre rendez-vous a été réservé avec succès.');
+                    // Mettez à jour l'apparence du créneau réservé
+                    $(this).addClass('booked').removeClass('appointment-slot');
+                } else {
+                    alert('Une erreur est survenue lors de la réservation du rendez-vous.');
+                }
+            }.bind(this),
+            error: function(){
+                alert('Error occurred while booking the appointment.');
+            }
+        });
     });
 });
+
+function afficherMedecins(specialite) {
+    var url = 'liste_medecins.php?specialite=' + encodeURIComponent(specialite);
+    window.location.href = url;
+}
+function afficherMedecin(specialite) {
+    var url = 'liste_medecins_client.php?specialite=' + encodeURIComponent(specialite);
+    window.location.href = url;
+}
+
+
+        $(document).ready(function() {
+            // Fonction pour gérer le clic sur un créneau
+            $('td[data-medecin-id]').click(function() {
+                // Récupérer les informations du créneau
+                var medecinId = $(this).data('medecin-id');
+                var jour = $(this).data('jour');
+                var heureDebut = $(this).data('heure-debut');
+                var heureFin = $(this).data('heure-fin');
+
+                // Envoyer une requête AJAX pour enregistrer la réservation
+                $.ajax({
+                    type: 'POST',
+                    url: 'enregistrer_reservation.php', // Remplacez 'enregistrer_reservation.php' par le fichier PHP qui gère l'enregistrement dans la base de données
+                    data: {
+                        medecinId: medecinId,
+                        jour: jour,
+                        heureDebut: heureDebut,
+                        heureFin: heureFin
+                    },
+                    success: function(response) {
+                        // Traiter la réponse de la requête
+                        if (response === 'success') {
+                            alert('Créneau réservé avec succès !');
+                        } else {
+                            alert('Erreur lors de la réservation.');
+                        }
+                    }
+                });
+            });
+        });
+
+        
