@@ -24,14 +24,21 @@
             </button>
             <div class="collapse navbar-collapse" id="main-navigation">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="acceuil.html">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="toutParcourir.html">Tout parcourir</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Recherche</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Votre compte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="accueil_client.php">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tout_parcourir_client.php">Tout parcourir</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rdv_client.php">Rendez-vous</a></li>
+                    <li class="nav-item"><a class="nav-link" href="compte_client.php">Votre compte</a></li>
+                    <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
+                <button class="btn btn-dark btn-sm" type="submit"  onclick="search()" >Rechercher</button>
                 </ul>
             </div>
+            <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger text-white" href="deconnexion_admin.php">Se déconnecter</a>
+                    </li>
+                </ul>
         </nav>
+        <div id="searchResults"></div>
 
         <div id="disponibilites">
             <div class="container mt-5">
