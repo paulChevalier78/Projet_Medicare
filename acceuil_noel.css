@@ -1,0 +1,288 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    background-image: url("houx.jpg") ;
+}
+
+/* Wrapper */
+.wrapper {
+    padding: 0.5%;
+    margin-top: 20px; /* Espace entre la barre de navigation et les cartes */
+    margin-bottom: 20px; /* Espace entre les cartes et le pied de page */
+}
+
+/* Site Header */
+.site-header {
+    background-color: #09322E;
+    color: #fff;
+    text-align: center;
+}
+.site-header a {
+    display: inline-block;
+}
+.header-logo {
+    max-height: 150px; /* Adjust as needed */
+}
+
+/*--- navigation bar ---*/
+.navbar {
+    background: red;
+}
+.nav-link, .navbar-brand {
+    color: #ffffff;
+    cursor: pointer;
+}
+.nav-link {
+    margin-right: 1em !important;
+}
+.nav-link:hover {
+    color: #000;
+}
+.navbar-collapse {
+    justify-content: center;
+}
+
+.sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020; /* Ajustez le z-index si nécessaire */
+}
+
+/* Welcome Section */
+.welcome-section {
+    padding: 2em 0;
+}
+.welcome-section h1 {
+    color: red;
+    background-color: #09322E;
+    font-size: 2rem;
+    margin-bottom: 1em;
+}
+.welcome-section p {
+    color: red;
+    background-color: #09322E;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Event Section */
+.event-section {
+    padding: 2em 0;
+    background-color: #09322E;
+    text-align: center;
+}
+
+.event-section h2 {
+    color: red;
+    font-size: 1.8rem;
+    margin-bottom: 1em;
+}
+.event-section p {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Carousel */
+.carousel-inner img {
+    width: 100%;
+    height: 400px;
+}
+
+/* Features Section */
+.features {
+    margin: 4em auto;
+    padding: 1em;
+    position: relative;
+}
+.feature-title {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.features img {
+    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 16px;
+}
+.features .form-control,
+.features input {
+    border-radius: 0;
+}
+.features .btn {
+    background-color: #589b37;
+    border: 1px solid #589b37;
+    color: #fff;
+    margin-top: 20px;
+}
+.features .btn:hover {
+    background-color: #333;
+    border: 1px solid #333;
+}
+
+/* Footer */
+.page-footer {
+    background-color: #222;
+    color: #ccc;
+    padding: 60px 0 30px;
+}
+.page-footer h6 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1em;
+}
+.page-footer p {
+    color: #ccc;
+    line-height: 1.5;
+}
+
+.footer-copyright {
+    color: #666;
+    padding: 40px 0;
+}
+
+@media (max-width: 575.98px) {
+    .description {
+        left: 0;
+        padding: 0 15px;
+        position: absolute;
+        top: 10%;
+    }
+    .carousel-inner img {
+        height: 200px;
+    }
+}
+
+.occupied {
+    background-color: red; /* Style pour les créneaux occupés */
+}
+
+.button-container-padding {
+    padding-top: 10%; /* Ajoutez ici le padding top souhaité */
+}
+/* Styles pour les liens des types de médecins */
+.container .row .col a {
+    color: #ffffff; /* Bleu clair */
+    text-decoration: none; /* Supprimer la décoration de texte par défaut */
+    font-weight: bold; /* Texte en gras pour une meilleure visibilité */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Transition douce pour les effets */
+}
+
+.container .row .col a:hover {
+    color: #2a8bb0; /* Bleu légèrement plus foncé lors du survol */
+}
+
+.medecin-links {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #fff;
+    margin-top: 10px;
+}
+.medecin-links a {
+    border: 1px solid #ccc; /* Définissez ici la couleur et l'épaisseur de la bordure */
+    padding: 10px; /* Ajoutez un peu d'espacement à l'intérieur du cadre */
+    margin-bottom: 10px; /* Ajoutez un peu d'espacement entre chaque cadre */
+    display: block; /* Assurez-vous que chaque lien occupe toute la largeur */
+    text-decoration: none; /* Supprimez la décoration du texte par défaut */
+    color: #333; /* Couleur du texte */
+    background-color: #3c5dd7;
+}
+.typemed {
+    color: #3c5dd7;
+}
+.medecin {
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.medecin-photo {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+.medecin-details {
+    flex: 1;
+}
+.medecin-details h4 {
+    margin: 0;
+    font-weight: bold;
+}
+.medecin-details p {
+    margin: 5px 0;
+    font-weight: bold;
+}
+.prendre-rdv-btn {
+    margin-left: auto;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+/* Styles pour les affiches d'événements */
+.event-posters {
+    padding: 2em 0;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.event-posters h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 1em;
+}
+
+.poster-images {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.poster {
+    text-align: center;
+    min-width: 200px; /* Fixez une largeur minimale pour le conteneur des affiches */
+}
+
+.poster img {
+    width: 400px; /* Remplacez max-width par width pour une taille fixe */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.poster img:hover {
+    transform: scale(1.1);
+}
+
+.poster p {
+    color: #666;
+    margin-top: 0.5em;
+    font-size: 1rem;
+}
+.doctor-image {
+    width: 400px; /* Ajustez la taille selon vos préférences */
+    height: auto; /* Cela maintient le ratio de l'image */
+    display: block; /* Pour centrer l'image horizontalement */
+    margin: 0 auto; /* Pour centrer l'image horizontalement */
+}
+.custom-button {
+    background-color: #3c5dd7;
+    border: none; 
+    color: #3c5dd7; 
+    padding: 15px 30px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block;
+    font-size: 1px; 
+    margin: 4px 2px; 
+    cursor: pointer; 
+    border-radius: 8px; 
+}
