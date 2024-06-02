@@ -1,5 +1,5 @@
 <?php
-// rdv.php
+session_start();
 
 // Connexion à la base de données
 $servername = "localhost";
@@ -15,44 +15,87 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Récupération de l'ID du médecin sélectionné
+$medecin_id = isset($_GET['medecin_id']) ? intval($_GET['medecin_id']) : 0;
+
+// Récupération des informations du médecin sélectionné
+$medecin_sql = "SELECT id, nom FROM medecins WHERE id = ?";
+$medecin_stmt = $conn->prepare($medecin_sql);
+$medecin_stmt->bind_param("i", $medecin_id);
+$medecin_stmt->execute();
+$medecin_result = $medecin_stmt->get_result();
+$medecin = $medecin_result->fetch_assoc();
+
 // Récupération des données du formulaire
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $medecin_id = $_POST['medecin_id'];
+    // Vérifier si l'utilisateur est connecté en tant que patient et récupérer son ID
+    if (isset($_SESSION['patient_id'])) {
+        $patient_id = $_SESSION['patient_id'];
+    } else {
+        // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+        header("Location: login.php");
+        exit();
+    }
+
     $date = $_POST['date'];
     $heure_debut = $_POST['heure_debut'];
     $heure_fin = $_POST['heure_fin'];
+    $patient_id = $_SESSION['patient_id'];
 
     // Vérifier si le créneau est déjà réservé
-    $check_sql = "SELECT * FROM disponibilites WHERE medecin_id = '$medecin_id' AND date = '$date' AND heure_debut = '$heure_debut' AND heure_fin = '$heure_fin'";
-    $result = $conn->query($check_sql);
+    $check_sql = $conn->prepare("SELECT * FROM disponibilites WHERE medecin_id = ? AND date = ? AND heure_debut = ? AND heure_fin = ?");
+    $check_sql->bind_param("isss", $medecin_id, $date, $heure_debut, $heure_fin);
+    $check_sql->execute();
+    $result = $check_sql->get_result();
+    
     if ($result->num_rows > 0) {
         echo "Ce créneau est déjà réservé.";
     } else {
         // Requête d'insertion dans la table disponibilites
-        $insert_sql = "INSERT INTO disponibilites (medecin_id, date, heure_debut, heure_fin, est_reserve) 
-                VALUES ('$medecin_id', '$date', '$heure_debut', '$heure_fin', 1)";
+        $insert_sql = $conn->prepare("INSERT INTO disponibilites (medecin_id, date, heure_debut, heure_fin, est_reserve, patient_id) VALUES (?, ?, ?, ?, ?, ?)");
+        $insert_sql->bind_param("isssii", $medecin_id, $date, $heure_debut, $heure_fin, $est_reserve, $patient_id);
+        $est_reserve = 1;
 
-        // Exécution de la requête
-        if ($conn->query($insert_sql) === TRUE) {
-            echo "Créneau réservé avec succès.";
+        // Insérez ces lignes après l'insertion dans la table "disponibilites" avec succès
+$dispo_id = $insert_sql->insert_id;
 
-            // Vérification des données insérées dans la base de données
-            $check_insert_sql = "SELECT * FROM disponibilites WHERE medecin_id = '$medecin_id' AND date = '$date' AND heure_debut = '$heure_debut' AND heure_fin = '$heure_fin' AND est_reserve = 1";
-            $result_insert = $conn->query($check_insert_sql);
-            if ($result_insert->num_rows === 0) {
-                echo "Erreur : Les données insérées ne correspondent pas à celles de la base de données.";
-            }
-        } else {
-            echo "Erreur lors de la réservation du créneau : " . $conn->error;
-        }
+// Assurez-vous que les valeurs sont correctement liées pour l'insertion dans "rendezvous"
+$insert_rdv_sql = $conn->prepare("INSERT INTO rendezvous (medecin_id, patient_id, disponibilite_id, date_rendezvous, heure_debut, heure_fin) VALUES (?, ?, ?, ?, ?, ?)");
+$insert_rdv_sql->bind_param("iiisss", $medecin_id, $patient_id, $dispo_id, $date, $heure_debut, $heure_fin);
+
+// Vérifiez si l'insertion dans "rendezvous" s'exécute avec succès
+if ($insert_rdv_sql->execute() === TRUE) {
+    echo "Créneau réservé avec succès et rendez-vous ajouté.";
+} else {
+    echo "Erreur lors de l'ajout du rendez-vous : " . $insert_rdv_sql->error;
+}
+
     }
 }
 
+// Requête pour obtenir les créneaux horaires du médecin sélectionné
+$dispo_sql = "SELECT m.nom as medecin_nom, d.date, d.heure_debut, d.heure_fin, d.est_reserve 
+              FROM disponibilites d 
+              JOIN medecins m ON d.medecin_id = m.id
+              WHERE d.medecin_id = ?";
+$dispo_stmt = $conn->prepare($dispo_sql);
+$dispo_stmt->bind_param("i", $medecin_id);
+$dispo_stmt->execute();
+$dispo_result = $dispo_stmt->get_result();
+
+// Récupération des créneaux déjà réservés
+$reserves_sql = "SELECT m.nom as medecin_nom, r.date_rendezvous as date, r.heure_debut, r.heure_fin
+                FROM rendezvous r
+                JOIN medecins m ON r.medecin_id = m.id
+                WHERE r.medecin_id = ?";
+$reserves_stmt = $conn->prepare($reserves_sql);
+$reserves_stmt->bind_param("i", $medecin_id);
+$reserves_stmt->execute();
+$reserves_result = $reserves_stmt->get_result();
+
 // Fermeture de la connexion
 $conn->close();
-
 ?>
-
 
 
 <!DOCTYPE html>
@@ -61,7 +104,6 @@ $conn->close();
     <title>Medicare</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -71,22 +113,22 @@ $conn->close();
 </head>
 <body>
     <div class="wrapper">
-    <header class="site-header">
-        <a href="#"><img src="loog.png" alt="Logo" class="header-logo"></a>
-    </header>
-    
-    <nav class="navbar navbar-expand-md">
+        <header class="site-header">
+            <a href="#"><img src="loog.png" alt="Logo" class="header-logo"></a>
+        </header>
+        
+        <nav class="navbar navbar-expand-md">
             <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="main-navigation">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="acceuil_client.php">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="accueil_client.php">Accueil</a></li>
                     <li class="nav-item"><a class="nav-link" href="tout_parcourir_client.php">Tout parcourir</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rdv_client.php">Rendez-vous</a></li>
                     <li class="nav-item"><a class="nav-link" href="compte_client.php">Votre compte</a></li>
                     <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
-                <button class="btn btn-dark btn-sm" type="submit"  onclick="search()" >Rechercher</button>
+                    <button class="btn btn-dark btn-sm" type="submit" onclick="search()">Rechercher</button>
                 </ul>
             </div>
             <ul class="navbar-nav ml-auto">
@@ -94,241 +136,113 @@ $conn->close();
                     <a class="nav-link btn btn-danger text-white" href="deconnexion_admin.php">Se déconnecter</a>
                 </li>
             </ul>
-        </nav>   
-    
-    <div id="searchResults"></div>
-
+        </nav>
+        
+        <div id="searchResults"></div>
+        
         <div id="disponibilites">
-        <div class="container mt-5">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th class="table-primary" colspan="1" rowspan="2">Spécialité</th>
-                        <th class="table-primary" colspan="1" rowspan="2">Médecin</th>
-                        <th class="table-success" colspan="2" rowspan="1">Lundi</th>
-                        <th class="table-success" colspan="2" rowspan="1">Mardi</th>
-                        <th class="table-success" colspan="2" rowspan="1">Mercredi</th>
-                        <th class="table-success" colspan="2" rowspan="1">Jeudi</th>
-                        <th class="table-success" colspan="1" rowspan="1">Vendredi</th>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="table-warning">PM</td>
-                        <td class="table-danger"><b>AM</b></td>
-                        <td class="table-warning"><b>PM</b></td>
-                        <td class="table-danger"><b>AM</b></td>
-                        <td class="table-warning"><b>PM</b></td>
-                        <td class="table-danger"><b>AM</b></td>
-                        <td class="table-warning"><b>PM</b></td>
-                        <td class="table-danger"><b>AM</b></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td rowspan="13">Médecin généraliste</td>
-                        <td rowspan="13" data-medecin-id="27">Julia Molinari</td>
-                        <td colspan="2" data-medecin-id="27" data-jour="2024-06-03" data-heure-debut="14:00:00" data-heure-fin="14:30:00">14:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="08:00:00" data-heure-fin="08:30:00">08:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="14:00:00" data-heure-fin="14:30:00">14:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="08:00:00" data-heure-fin="08:30:00">08:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="14:00:00" data-heure-fin="14:30:00">14:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="08:00:00" data-heure-fin="08:30:00">08:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="14:00:00" data-heure-fin="14:30:00">14:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-07" data-heure-debut="08:00:00" data-heure-fin="08:30:00">08:00</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" data-medecin-id="27" data-jour="2024-06-03" data-heure-debut="14:30:00" data-heure-fin="15:00:00">14:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="08:30:00" data-heure-fin="09:00:00">08:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="14:30:00" data-heure-fin="15:00:00">14:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="08:30:00" data-heure-fin="09:00:00">08:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="14:30:00" data-heure-fin="15:00:00">14:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="08:30:00" data-heure-fin="09:00:00">08:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="14:30:00" data-heure-fin="15:00:00">14:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-07" data-heure-debut="08:30:00" data-heure-fin="09:00:00">08:30</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" data-medecin-id="27" data-jour="2024-06-03" data-heure-debut="15:00:00" data-heure-fin="15:30:00">15:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="09:00:00" data-heure-fin="09:30:00">09:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="15:00:00" data-heure-fin="15:30:00">15:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="09:00:00" data-heure-fin="09:30:00">09:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="15:00:00" data-heure-fin="15:30:00">15:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="09:00:00" data-heure-fin="09:30:00">09:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="15:00:00" data-heure-fin="15:30:00">15:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-07" data-heure-debut="09:00:00" data-heure-fin="09:30:00">09:00</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" data-medecin-id="27" data-jour="2024-06-03" data-heure-debut="15:30:00" data-heure-fin="16:00:00">15:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="09:30:00" data-heure-fin="10:00:00">09:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="15:30:00" data-heure-fin="16:00:00">15:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="09:30:00" data-heure-fin="10:00:00">09:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="15:30:00" data-heure-fin="16:00:00">15:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="09:30:00" data-heure-fin="10:00:00">09:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="15:30:00" data-heure-fin="16:00:00">15:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-07" data-heure-debut="09:30:00" data-heure-fin="10:00:00">09:30</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" data-medecin-id="27" data-jour="2024-06-03" data-heure-debut="16:00:00" data-heure-fin="16:30:00">16:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="10:00:00" data-heure-fin="10:30:00">10:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="16:00:00" data-heure-fin="16:30:00">16:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="10:00:00" data-heure-fin="10:30:00">10:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="16:00:00" data-heure-fin="16:30:00">16:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="10:00:00" data-heure-fin="10:30:00">10:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="16:00:00" data-heure-fin="16:30:00">16:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-07" data-heure-debut="10:00:00" data-heure-fin="10:30:00">10:00</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" data-medecin-id="27" data-jour="2024-06-03" data-heure-debut="16:30:00" data-heure-fin="17:00:00">16:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="10:30:00" data-heure-fin="11:00:00">10:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="16:30:00" data-heure-fin="17:00:00">16:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="10:30:00" data-heure-fin="11:00:00">10:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="16:30:00" data-heure-fin="17:00:00">16:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="10:30:00" data-heure-fin="11:00:00">10:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="16:30:00" data-heure-fin="17:00:00">16:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-07" data-heure-debut="10:30:00" data-heure-fin="11:00:00">10:30</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" data-medecin-id="27" data-jour="2024-06-03" data-heure-debut="17:00:00" data-heure-fin="17:30:00">17:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="11:00:00" data-heure-fin="11:30:00">11:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="17:00:00" data-heure-fin="17:30:00">17:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="11:00:00" data-heure-fin="11:30:00">11:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="17:00:00" data-heure-fin="17:30:00">17:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="11:00:00" data-heure-fin="11:30:00">11:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="17:00:00" data-heure-fin="17:30:00">17:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-07" data-heure-debut="11:00:00" data-heure-fin="11:30:00">11:00</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" data-medecin-id="27" data-jour="2024-06-03" data-heure-debut="17:30:00" data-heure-fin="18:00:00">17:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="11:30:00" data-heure-fin="12:00:00">11:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="17:30:00" data-heure-fin="18:00:00">17:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="11:30:00" data-heure-fin="12:00:00">11:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="17:30:00" data-heure-fin="18:00:00">17:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="11:30:00" data-heure-fin="12:00:00">11:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="17:30:00" data-heure-fin="18:00:00">17:30</td>
-                        <td data-medecin-id="27" data-jour="2024-06-07" data-heure-debut="11:30:00" data-heure-fin="12:00:00">11:30</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" data-medecin-id="27" data-jour="2024-06-03" data-heure-debut="18:00:00" data-heure-fin="18:30:00">18:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="12:00:00" data-heure-fin="12:30:00">12:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-04" data-heure-debut="18:00:00" data-heure-fin="18:30:00">18:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="12:00:00" data-heure-fin="12:30:00">12:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-05" data-heure-debut="18:00:00" data-heure-fin="18:30:00">18:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="12:00:00" data-heure-fin="12:30:00">12:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-06" data-heure-debut="18:00:00" data-heure-fin="18:30:00">18:00</td>
-                        <td data-medecin-id="27" data-jour="2024-06-07" data-heure-debut="12:00:00" data-heure-fin="12:30:00">12:00</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-4 text-center">
-                <div>
-                    <a href="cvmedecin1.png" class="btn btn-primary mb-2 d-inline-block">Voir son CV</a>
-                </div>
-                <div>
-                    <a href="com.html" class="btn btn-info mb-2 d-inline-block">Communiquer avec le médecin</a>
-                </div>
+    <div class="container mt-5">
+        <form method="POST" action="rdv.php?medecin_id=<?php echo $medecin_id; ?>">
+            <div class="form-group">
+                <label for="medecin">Médecin sélectionné:</label>
+                <input type="text" id="medecin" class="form-control" value="<?php echo htmlspecialchars($medecin['nom']); ?>" disabled>
+                <input type="hidden" name="medecin_id" value="<?php echo $medecin_id; ?>">
             </div>
-        </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="heure_debut">Heure de début:</label>
+                <select id="heure_debut" name="heure_debut" class="form-control" required>
+                    <?php
+                    // Affichage des créneaux de 30 minutes de 8h à 18h sauf de 12h à 14h
+                    $start_time = strtotime("08:00");
+                    $end_time = strtotime("18:00");
+                    $current_time = $start_time;
+                    while ($current_time < $end_time) {
+                        $current_time_str = date("H:i", $current_time);
+                        if ($current_time_str != "12:00" && $current_time_str != "12:30") {
+                            echo "<option value='$current_time_str'>$current_time_str</option>";
+                        }
+                        $current_time = strtotime("+30 minutes", $current_time);
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="heure_fin">Heure de fin:</label>
+                <select id="heure_fin" name="heure_fin" class="form-control" required>
+                    <option value="">Sélectionnez une heure de fin</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Réserver</button>
+        </form>
+        <script>
+            // Script pour mettre à jour automatiquement l'heure de fin 30 minutes après l'heure de début
+            document.getElementById('heure_debut').addEventListener('change', function() {
+                var selectedStartTime = this.value;
+                var endTimeSelect = document.getElementById('heure_fin');
+                endTimeSelect.innerHTML = '';
+                var start = new Date('2024-06-02T' + selectedStartTime + ':00');
+                var end = new Date(start.getTime() + 30 * 60000); // 30 minutes after start time
+                var endHour = end.getHours().toString().padStart(2, '0');
+                var endMinutes = end.getMinutes().toString().padStart(2, '0');
+                var endTime = endHour + ':' + endMinutes;
+                endTimeSelect.innerHTML = "<option value='" + endTime + "'>" + endTime + "</option>";
+            });
+        </script>
+        <table class="table table-bordered mt-5">
+            <thead>
+                <tr>
+                    <th class="table-primary">Médecin</th>
+                    <th class="table-primary">Date</th>
+                    <th class="table-primary">Heure de début</th>
+                    <th class="table-primary">Heure de fin</th>
+                    <th class="table-primary">Disponibilité</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Affichage des créneaux horaires disponibles
+                if ($dispo_result->num_rows > 0) {
+                    while($row = $dispo_result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>" . $row['medecin_nom'] . "</td>
+                                <td>" . $row['date'] . "</td>
+                                <td>" . $row['heure_debut'] . "</td>
+                                <td>" . $row['heure_fin'] . "</td>
+                                <td>" . ($row['est_reserve'] ? 'Réservé' : 'Disponible') . "</td>
+                              </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>Aucune disponibilité trouvée</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
+</div>
+
+
+
+        </div>
         
         <footer class="page-footer">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12">
-                        <h6 class="text-uppercase font-weight-bold">Information additionnelle</h6>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum quam odio, quis placerat ante luctus eu. Sed aliquet dolor id sapien rutrum, id vulputate quam iaculis.
-                        </p>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
                         <h6 class="text-uppercase font-weight-bold">Contact</h6>
                         <p>
-                            10 Rue Sextius Michel, 75015 Paris, France <br>
-                            info@webDynamique.ece.fr <br>
+                            37, quai de Grenelle, 75015 Paris, France <br>
+                            info@webdynamique.ece.fr <br>
                             +33 01 02 03 04 05 <br>
                             +33 01 03 02 05 04
                         </p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="googleMap">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5250.744877226207!2d2.2859626764985514!3d48.85110800121883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6701b486bb253%3A0x61e9cc6979f93fae!2s10%20Rue%20Sextius%20Michel%2C%2075015%20Paris!5e0!3m2!1sfr!2sfr!4v1716713668012!5m2!1sfr!2sfr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="footer-copyright text-center">&copy; 2019 Copyright | Droit d'auteur: webDynamique.ece.fr</div>
         </footer>
-                
     </div>
-    <script>
-        $(document).ready(function(){
-    // Fonction pour charger les créneaux réservés d'un médecin à partir du localStorage
-    function chargerCreneauxReserves() {
-        // Parcourir tous les médecins disponibles
-        $("td").each(function(){
-            var cellule = $(this);
-            var medecinId = cellule.data("medecin-id");
-            var jour = cellule.data("jour");
-            var heureDebut = cellule.data("heure-debut");
-            var heureFin = cellule.data("heure-fin");
-            var cle = medecinId + "_" + jour + "_" + heureDebut + "_" + heureFin;
-
-            // Vérifier si la case est déjà réservée dans le localStorage du médecin spécifié
-            if (localStorage.getItem(cle) === "true") {
-                cellule.addClass("table-danger");
-            }
-        });
-    }
-
-    // Écouteurs d'événements pour les cellules du tableau
-    $("td").each(function(){
-        var cellule = $(this);
-        var medecinId = cellule.data("medecin-id");
-        var jour = cellule.data("jour");
-        var heureDebut = cellule.data("heure-debut");
-        var heureFin = cellule.data("heure-fin");
-        var cle = medecinId + "_" + jour + "_" + heureDebut + "_" + heureFin;
-
-        // Ajouter un écouteur d'événements pour la réservation de créneaux
-        cellule.click(function(){
-            if (cellule.hasClass("table-danger")) {
-                alert("La case est déjà réservée !");
-            } else {
-                $.ajax({
-                    url: "rdv.php",
-                    method: "POST",
-                    data: {
-                        medecin_id: medecinId,
-                        date: jour,
-                        heure_debut: heureDebut,
-                        heure_fin: heureFin
-                    },
-                    success: function(response) {
-                        if (response.trim() === "Créneau réservé avec succès.") {
-                            alert(response);
-                            cellule.addClass("table-danger");
-                            // Enregistrer l'état de réservation dans le localStorage du médecin spécifié
-                            localStorage.setItem(cle, "true");
-                        } else {
-                            alert("Erreur lors de la réservation du créneau : " + response);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        alert("Erreur lors de la réservation du créneau : " + error);
-                    }
-                });
-            }
-        });
-    });
-
-    // Appel de la fonction pour charger les créneaux réservés pour tous les médecins
-    chargerCreneauxReserves();
-});
-
-    </script>
 </body>
 </html>
