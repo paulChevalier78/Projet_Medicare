@@ -52,42 +52,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="#"><img src="loog.png" alt="Logo" class="header-logo"></a>
     </header>
     
-    <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-md sticky-top">
             <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="accueil_admin.php">Accueil</a></li>
                     <li class="nav-item"><a class="nav-link" href="tout_parcourir_admin.php">Tout parcourir</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
-                    <li class="nav-item"><a class="nav-link" href="votre_compte_admin.php">Votre compte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="compte_admin.php">Votre compte</a></li>
+                    <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
+                <button class="btn btn-dark btn-sm" type="submit"  onclick="search()" >Rechercher</button>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search" id="searchInput">
-                    <button class="btn btn-dark my-2 my-sm-0" type="submit" onclick="search()">Rechercher</button>
-                </form>
-                <ul class="navbar-nav ml-auto">
+            </div>
+            <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link btn btn-danger text-white" href="deconnexion_admin.php">Se déconnecter</a>
                     </li>
                 </ul>
-            </div>
-        </nav>      
-    
-    <div id="searchResults"></div>
+        </nav>
+        <div id="searchResults"></div>
 
         <div class="container">
             <div class="welcome-section">
-                <h1>Bienvenue sur Medicare avec le compte administrateur !</h1>
-                <p>Il s’agit de la page principale (accueil | home) de Medicare. Dans cette page, on peut
-                    trouver quelques mots de bienvenue, introduisant Medicare</p>
+                <h1>Bienvenue sur Medicare</h1>
+                <p>Votre portail pour des soins de santé accessibles et pratiques. Medicare est votre allié pour simplifier la prise de rendez-vous médicaux. Avec notre plateforme conviviale, planifiez vos consultations en quelques clics, où que vous soyez. Plus besoin de jongler avec les agendas ou d'attendre au téléphone, Medicare vous permet de trouver et de réserver facilement des rendez-vous avec des professionnels de santé qualifiés. Découvrez dès maintenant comment nous facilitons votre accès aux soins médicaux.</p>
             </div>
 
             <div id="event-section" class="event-section">
-                <h2>Evènement de la semaine</h2>
-                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                
+                <h2>Evènements de la semaine</h2>                
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -96,13 +89,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="" alt="First slide">
+                            <img class="d-block w-100" src="ev1.png" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="" alt="Second slide">
+                            <img class="d-block w-100" src="ev2.png" alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="" alt="Third slide">
+                            <img class="d-block w-100" src="ev3.png" alt="Third slide">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -117,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <!-- Bouton pour l'évènement de la semaine -->
                 <div class="text-center mt-4">
-                    <a href="evenement_semaine.html" class="btn btn-primary">Évènement de la semaine</a>
+                    <a href="evenement_semaine.html" class="btn btn-primary">Voir les évènements</a>
                 </div>
             </div>
         </div>

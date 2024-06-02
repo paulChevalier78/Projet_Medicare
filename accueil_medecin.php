@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="recherche.js" defer></script>
 </head>
 <body>
     <div class="wrapper">
@@ -16,18 +17,18 @@
         <a href="#"><img src="loog.png" alt="Logo" class="header-logo"></a>
     </header>
     
-        <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-md sticky-top">
             <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="main-navigation">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="acceuil_client.php">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tout_parcourir_client.php">Tout parcourir</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Recherche</a></li>
+                    <li class="nav-item"><a class="nav-link" href="accueil_medecin.php">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tout_parcourir_medecin.php">Tout parcourir</a></li>
                     <li class="nav-item"><a class="nav-link" href="rdv_client.php">Rendez-vous</a></li>
                     <li class="nav-item"><a class="nav-link" href="compte_client.php">Votre compte</a></li>
-
+                    <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
+                <button class="btn btn-dark btn-sm" type="submit"  onclick="search()" >Rechercher</button>
                 </ul>
             </div>
             <ul class="navbar-nav ml-auto">
@@ -36,9 +37,49 @@
                     </li>
                 </ul>
         </nav>
+        <div id="searchResults"></div>
 
         <div class="container">
             <h1>COMPTE MEDECIN</h1>
+            <div class="welcome-section">
+                <h1>Bienvenue sur Medicare</h1>
+                <p>Votre portail pour des soins de santé accessibles et pratiques. Medicare est votre allié pour simplifier la prise de rendez-vous médicaux. Avec notre plateforme conviviale, planifiez vos consultations en quelques clics, où que vous soyez. Plus besoin de jongler avec les agendas ou d'attendre au téléphone, Medicare vous permet de trouver et de réserver facilement des rendez-vous avec des professionnels de santé qualifiés. Découvrez dès maintenant comment nous facilitons votre accès aux soins médicaux.</p>
+            </div>
+
+            <div id="event-section" class="event-section">
+                <h2>Evènements de la semaine</h2>                
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="ev1.png" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="ev2.png" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="ev3.png" alt="Third slide">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+                <!-- Bouton pour l'évènement de la semaine -->
+                <div class="text-center mt-4">
+                    <a href="evenement_semaine.html" class="btn btn-primary">Voir les évènements</a>
+                </div>
+            </div>
         </div>
 
 
