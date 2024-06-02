@@ -57,36 +57,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="accueil_admin.php">Accueil</a></li>
                     <li class="nav-item"><a class="nav-link" href="tout_parcourir_admin.php">Tout parcourir</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
-                    <li class="nav-item"><a class="nav-link" href="votre_compte_admin.php">Votre compte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="compte_admin.php">Votre compte</a></li>
+                    <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
+                <button class="btn btn-dark btn-sm" type="submit"  onclick="search()" >Rechercher</button>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search" id="searchInput">
-                    <button class="btn btn-dark my-2 my-sm-0" type="submit" onclick="search()">Rechercher</button>
-                </form>
-                <ul class="navbar-nav ml-auto">
+            </div>
+            <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link btn btn-danger text-white" href="deconnexion_admin.php">Se déconnecter</a>
                     </li>
                 </ul>
-            </div>
-        </nav>   
-
+        </nav>
         <div id="searchResults"></div>
 
         <div class="container">
             <div class="row align-items-start">
                 <div class="col">
-                    <a href="medecine_generale.html"><h3>Médecine générale</h3></a>
+                    <a href="liste_medecins_client.php"><h3>Médecine générale</h3></a>
                 </div>
                 <div class="col">
-                    <h3>Médecins spécialistes</h3>
+                <a href="specialite_client.php"><h3>Médecins spécialistes</h3></a>
+
                 </div>
-                <div class="col">
-                    <h3>Laboratoire de biologie médicale</h3>
+                <div class="col">*
+                <a href="LabBioMed_client.html"><h3>Laboratoire de biologie médicale</h3></a>
                 </div>
             </div>
         </div>

@@ -28,7 +28,6 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="acceuil.html">Accueil</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Tout parcourir</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Rendez-vous</a></li>
                     <li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
                     <input type="text" id="searchInput" placeholder="Rechercher..." class="form-control mr-2" aria-label="Search">
                     <button class="btn btn-dark btn-sm" type="submit" onclick="search()">Rechercher</button>
@@ -38,20 +37,43 @@
 
         <div id="searchResults"></div>
 
-        <div class="container">
-            <div class="row align-items-start">
-                <div class="col">
-                    <a href="#" onclick="afficherMedecins('Généraliste')"><h3>Médecine générale</h3></a>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="specialiste.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Médecine spécialiste</h5>
+                            <p class="card-text">Trouvez un médecin spécialiste de santé publique (ou un professionnel pratiquant des actes de santé publique et médecine sociale) et réservez en ligne .</p>
+                            <a href="specialiste.php" class="btn btn-primary">Voir plus</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <a href="specialiste.php"><h3>Médecins spécialistes</h3></a>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="general.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Médecins géneralistes</h5>
+                            <p class="card-text">Trouvez rapidement un médecin généraliste près de chez vous ou un praticien pratiquant des actes de médecine générale et prenez rendez-vous gratuitement en ligne.</p>
+                            <a href="#" onclick="afficherMedecins('Généraliste')" class="btn btn-primary">Voir plus</a>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                <a href="LabBioMed.html"><h3>Laboratoire de biologie médicale</h3></a>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="labo.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Laboratoires de biologie médicale</h5>
+                            <p class="card-text">Trouvez un laboratoire d'analyse médicale et réservez en ligne.</p>
+                            <a href="LabBioMed.html" class="btn btn-primary">Voir plus</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <footer class="page-footer">
+
+        <footer class="page-footer mt-4">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12">
